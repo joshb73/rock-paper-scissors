@@ -1,0 +1,16 @@
+create a random number between 0 and 1
+round the number to nearest whole number
+multiply by 100 and add 1 to get a number between 1 - 100
+if the number is less than or equal to 33, return rock
+if the number is less than or equal to 66, and greater than 33, return paper
+if the number is greater than 66, return scissors
+COMPLETE
+
+Prompt user to enter either Rock, Paper, or scissors
+store answer in variable
+print choice in console
+COMPLETE
+
+take user choice and cumputer choice, convert them to lowercase
+compare choices against eachother to see who wins
+increment points variable by 1 for winner
