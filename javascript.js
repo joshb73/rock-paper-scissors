@@ -1,69 +1,122 @@
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorsButton = document.querySelector("#scissors");
+
+let humanChoice = 'man';
+let comChoice = '';
+let playerScore = 0;
 let computerScore = 0;
-let humanScore = 0;
-let round = 0;
+let outcome = '';
+const playerSource = document.getElementById("player-score");
+const computerSource = document.getElementById("computer-score");
 
-function getWinner(){
-    if(computerScore > humanScore){
-        console.log("You Lose, try again next time!");
-    } else if(computerScore < humanScore){
-        console.log("You Win! Great Job!");
-    } else{
-        console.log("Woah, a tie! Good game.")
+function getComputerChoice(){
+    let choice;
+    let randNumber = Math.floor(Math.random() * 100) + 1;
+    if(randNumber < 33){
+        choice = "rock";
+    } else if(randNumber < 66 && randNumber > 33){
+        choice = "paper";
+    } else if(randNumber > 66){
+        choice = "scissors";
+    }
+
+    return choice;
+}
+
+
+
+function playRound(playerChoice, computerChoice){
+    let outcome = '';
+    if(computerChoice === playerChoice){
+        outcome = "Its a tie!";
+        let newDiv = document.createElement("div")
+        newDiv.textContent = outcome;
+        newDiv.style.textAlign = "center";
+        document.getElementsByTagName("body")[0].appendChild(newDiv);
+        return outcome;
+    } else if(computerChoice === "rock" && playerChoice === "paper"){
+        outcome = "You Win!";
+        playerScore++;
+        playerSource.textContent = "Player Score: " + playerScore;
+        let newDiv = document.createElement("div")
+        newDiv.textContent = outcome;
+        newDiv.style.textAlign = "center";
+        document.getElementsByTagName("body")[0].appendChild(newDiv);
+        return outcome;
+    } else if(computerChoice === "rock" && playerChoice === "scissors"){
+        outcome = "Computer Wins!";
+        computerScore++;
+        computerSource.textContent = "Computer Score: " + computerScore;
+        let newDiv = document.createElement("div")
+        newDiv.textContent = outcome;
+        newDiv.style.textAlign = "center";
+        document.getElementsByTagName("body")[0].appendChild(newDiv);
+        return outcome;
+    } else if(computerChoice === "paper" && playerChoice === "scissors"){
+        outcome = "You Win!";
+        playerScore++;
+        playerSource.textContent = "Player Score: " + playerScore;
+        let newDiv = document.createElement("div")
+        newDiv.textContent = outcome;
+        newDiv.style.textAlign = "center";
+        document.getElementsByTagName("body")[0].appendChild(newDiv);
+        return outcome;
+    } else if(computerChoice === "paper" && playerChoice === "rock"){
+        outcome = "Computer Wins!";
+        computerScore++;
+        computerSource.textContent = "Computer Score: " + computerScore;
+        let newDiv = document.createElement("div")
+        newDiv.textContent = outcome;
+        newDiv.style.textAlign = "center";
+        document.getElementsByTagName("body")[0].appendChild(newDiv);
+        return outcome;
+    } else if(computerChoice === "scissors" && playerChoice === "rock"){
+        outcome = "You Win!";
+        playerScore++;
+        playerSource.textContent = "Player Score: " + playerScore;
+        let newDiv = document.createElement("div")
+        newDiv.textContent = outcome;
+        newDiv.style.textAlign = "center";
+        document.getElementsByTagName("body")[0].appendChild(newDiv);
+        return outcome;
+    } else if(computerChoice === "scissors" && playerChoice === "paper"){
+        outcome = "Computer Wins!";
+        computerScore++;
+        computerSource.textContent = "Computer Score: " + computerScore;
+        let newDiv = document.createElement("div")
+        newDiv.textContent = outcome;
+        newDiv.style.textAlign = "center";
+        document.getElementsByTagName("body")[0].appendChild(newDiv);
+        return outcome;
     }
 }
 
-function playGame(){
-    function getComputerChoice(){
-        let num = Math.floor(Math.random() * 100) + 1;
-        if(num <= 33){
-            return "rock";
-        } else if(num <= 66 && num > 33){
-            return "paper";
-        } else if(num > 66){
-            return "scissors";
-        }
-    }
-    
-    
-    function getHumanChoice(){
-        let choice = prompt("Rock, Paper, or Scissors?");
-        return choice;
-    }
-    
-    
-    function playRound(humanChoice, computerChoice){
-        humanChoice = humanChoice.toLowerCase();
-        computerChoice = computerChoice.toLowerCase();
-    
-        console.log(humanChoice);
-        console.log(computerChoice);
-    
-        if(humanChoice === computerChoice){
-            console.log("Tie! No points to anyone");
-        } else if(humanChoice === "rock" && computerChoice === "paper"){
-            console.log("Computer Wins!");
-            computerScore++;
-        } else if(humanChoice === "paper" && computerChoice === "scissors"){
-            console.log("Computer Wins!");
-            computerScore++;
-        } else if(humanChoice === "scissors" && computerChoice === "rock"){
-            console.log("Computer Wins!")
-            computerScore++;
-        }else{
-            console.log("You Win!")
-            humanScore++;
-        }
-    
-        console.log("Your Score: " + humanScore);
-        console.log("Computer's Score: " + computerScore);
-    }
-    
-    playRound(getHumanChoice(), getComputerChoice());
-    round++;
-}
+rockButton.addEventListener("click", () => {
+    outcome = playRound("rock", getComputerChoice());
+    console.log(outcome);
+});
 
-while(round < 5){
-    playGame();
-}
 
-getWinner();
+paperButton.addEventListener("click", () => {
+    outcome = playRound("paper", getComputerChoice());
+    console.log(outcome);
+});
+
+scissorsButton.addEventListener("click", () => {
+    outcome = playRound("scissors", getComputerChoice());
+    console.log(outcome);
+});
+
+if(playerScore === 5)
+{
+    let newDiv = document.createElement("div")
+    newDiv.textContent = "Game Over! You Beat the Computer!";
+    newDiv.style.textAlign = "center";
+    document.getElementsByTagName("body")[0].appendChild(newDiv);
+} else if(computerScore === 5){
+    let newDiv = document.createElement("div")
+    newDiv.textContent = "Game Over! The Computer beat You!";
+    newDiv.style.textAlign = "center";
+    document.getElementsByTagName("body")[0].appendChild(newDiv);
+}

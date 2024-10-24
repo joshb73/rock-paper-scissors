@@ -1,0 +1,36 @@
+#title{
+    text-align: center;
+    font-size: 64px;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.score-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 25px;
+    
+}
+
+
+button{
+    width: 300px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+#rock{
+    background-color: #ed4747;
+}
+
+#paper{
+    background-color: #f2ef8d;
+}
+
+#scissors{
+    background-color: #8dd4f2;
+}
